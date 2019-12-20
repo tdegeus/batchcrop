@@ -4,7 +4,7 @@
 
 # batchcrop
 
-Crop a batch of images with the same margins.
+Crop a batch of images with the same margins. This script wraps the `convert` command provided by *ImageMagic*
 
 # Contents
 
@@ -43,7 +43,7 @@ This will also install all necessary dependencies.
 pip install batchcrop
 ```
 
-This will also install the necessary Python modules, **but not GhostScript**.
+This will also install the necessary Python modules, **but not ImageMagic**.
 
 ## From source
 
@@ -56,7 +56,7 @@ cd batchcrop
 python -m pip install .
 ```
 
-This will also install the necessary Python modules, **but not GhostScript**.
+This will also install the necessary Python modules, **but not ImageMagic**.
 
 # Usage
 
