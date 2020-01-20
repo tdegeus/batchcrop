@@ -1,6 +1,5 @@
 [![Travis](https://travis-ci.org/tdegeus/batchcrop.svg?branch=master)](https://travis-ci.org/tdegeus/batchcrop)
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/batchcrop.svg)](https://anaconda.org/conda-forge/batchcrop)
-[![Conda Version](https://img.shields.io/conda/vn/conda-forge/python-batchcrop.svg)](https://anaconda.org/conda-forge/python-batchcrop)
 
 # batchcrop
 
