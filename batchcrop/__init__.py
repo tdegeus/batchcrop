@@ -1,5 +1,5 @@
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 import tempfile
 import os
@@ -7,9 +7,10 @@ import re
 
 from subprocess import check_output, STDOUT
 from shutil import which
+from shutil import move
 
 
-def _exec(cmd, verbose = False):
+def _exec(cmd, verbose=False):
     r'''
 Execute command and return output.
     '''
@@ -17,7 +18,7 @@ Execute command and return output.
     if verbose:
         print(cmd)
 
-    output = check_output(cmd, shell = True, stderr = STDOUT).decode("utf-8")
+    output = check_output(cmd, shell=True, stderr=STDOUT).decode("utf-8")
 
     if verbose and len(output) > 0:
         print(output)
@@ -25,7 +26,7 @@ Execute command and return output.
     return output
 
 
-def _mkdir(dirname, verbose = False):
+def _mkdir(dirname, verbose=False):
     r'''
 Make directory if it does not yet exist.
     '''
@@ -39,12 +40,12 @@ Make directory if it does not yet exist.
         print('mkdir {0:s}'.format(dirname))
 
 
-def _mv(orig, dest, verbose = False):
+def _mv(orig, dest, verbose=False):
     r'''
 Move file from "orig" to "dest".
     '''
 
-    os.rename(orig, dest)
+    move(orig, dest)
 
     if verbose:
         print('mv {0:s} {1:s}'.format(orig, dest))
@@ -67,7 +68,7 @@ Check if files exist, and return their path as absolute file-paths.
     return filenames
 
 
-def _make_convert_tempdir(temp_dir = None, verbose = False):
+def _make_convert_tempdir(temp_dir=None, verbose=False):
     r'''
 Make a temporary directory and returns its absolute file-path.
 If not specified a directory-name is automatically generated.
@@ -83,7 +84,7 @@ If not specified a directory-name is automatically generated.
     return temp_dir
 
 
-def _convert(filenames, options, append = None, temp_dir = None, verbose = False):
+def _convert(filenames, options, append=None, temp_dir=None, verbose=False):
     r'''
 Run convert on a batch of files.
 
@@ -100,7 +101,8 @@ Options:
 
     for filename in filenames:
 
-        temp_file = os.path.join(temp_dir, os.path.relpath(filename))
+        fd, temp_file = tempfile.mkstemp(dir=temp_dir)
+        os.close(fd)
 
         _exec('convert {options:s} "{old:s}" "{new:s}"'.format(
             options = options,
